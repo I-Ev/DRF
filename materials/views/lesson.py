@@ -11,14 +11,13 @@ class LessonListAPIView(generics.ListAPIView):
     """Просмотр уроков"""
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
-    permission_classes = [IsOwner | IsStaff]
+    permission_classes = [IsOwner & IsStaff]
     pagination_class = LessonsPaginator
-
 
 class LessonCreateAPIView(generics.CreateAPIView):
     """Создание урока"""
     serializer_class = LessonSerializer
-    permission_classes = [IsAuthenticated | IsStaff]
+    permission_classes = [IsAuthenticated & IsStaff]
 
     def perform_create(self, serializer):
         new_lesson = serializer.save()

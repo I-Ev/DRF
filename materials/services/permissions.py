@@ -9,7 +9,8 @@ class IsStaff(BasePermission):
         if request.user.is_staff:
             if request.method in ['DELETE', 'POST']:
                 return False
-            return True
+        return True
+
 
 
 class IsOwner(BasePermission):

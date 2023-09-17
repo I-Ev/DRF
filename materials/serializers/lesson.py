@@ -6,7 +6,7 @@ from materials.validators.validators import LinkValidator
 
 
 class LessonSerializer(serializers.ModelSerializer):
-    course = SlugRelatedField(slug_field='title', queryset=Course.objects.all())
+    course = SlugRelatedField(slug_field='id', queryset=Course.objects.all())
 
     class Meta:
         model = Lesson

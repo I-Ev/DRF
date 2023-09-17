@@ -23,6 +23,8 @@ class CourseViewSet(viewsets.ModelViewSet):
             permission_classes = [IsOwner | IsStaff]
         elif self.action == 'update':
             permission_classes = [IsOwner | IsStaff]
+        elif self.action == 'list':
+            permission_classes = [IsOwner | IsStaff]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]

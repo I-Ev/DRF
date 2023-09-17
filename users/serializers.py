@@ -19,7 +19,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "first_name", "last_name", "city", "avatar", "payments_history"]
+        fields = "__all__"
 
 
 class UserLimitSerializer(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class UserLimitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "first_name", "city", "avatar"]
+        fields = ["email", "first_name", "city", "avatar"]
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "first_name", "last_name", "phone_number", "location", "is_active", "password"]
+        fields = ["email", "first_name", "phone", "city", "password"]
 
     def create(self, validated_data):
         password = validated_data.pop('password')

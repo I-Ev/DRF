@@ -12,7 +12,7 @@ from users.serializers import UserListSerializer, UserDetailSerializer, UserLimi
 class UserViewSet(ModelViewSet):
     """Вью сет для пользователя"""
     queryset = User.objects.all()
-    serializer = UserListSerializer
+    serializer_class = UserListSerializer
 
     def get_permissions(self):
         """Права доступа"""

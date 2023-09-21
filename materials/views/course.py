@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from materials.models import Course
+from materials.models import Course, Subscription
 from materials.serializers import CourseSerializer
 from materials.services.permissions import IsOwner, IsStaff
 from materials.paginators import CoursePaginator
+from materials.tasks import send_emails_update_course
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -31,3 +32,9 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def perform_update(self, serializer):
+        serializer.save()
+        list_obj = Subscription.objects.filter(course=self.get_object())
+        emails = [obj.user.email for obj in list_obj]
+        send_emails_update_course.delay(self.get_object().id, emails)

@@ -10,7 +10,7 @@ class PaymentSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class PaymentRetrieveAPIView(serializers.ModelSerializer):
+class PaymentRetrieveSerializer(serializers.ModelSerializer):
     """Просмотр платежа"""
     stripe_payment_info = serializers.SerializerMethodField()
     class Meta:

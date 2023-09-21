@@ -1,3 +1,4 @@
+
 from celery import shared_task
 from django.core.mail import send_mail
 
@@ -7,6 +8,7 @@ from materials.models import Course
 
 @shared_task
 def send_emails_update_course(course_id, users_emails_list):
+    """ Отправляет email об обновлении курса """
     course_name = Course.objects.get(pk=course_id).title
     email_list= users_emails_list
     from_email = settings.EMAIL_HOST_USER

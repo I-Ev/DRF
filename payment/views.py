@@ -6,7 +6,6 @@ from payment.models import Payment
 from payment.serializers import PaymentSerializer
 from payment.stripe_services import  create_payment_intent
 
-
 class PaymentListAPIView(generics.CreateAPIView):
     """Просмотр платежей"""
     queryset = Payment.objects.all()

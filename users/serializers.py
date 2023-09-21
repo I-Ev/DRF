@@ -15,8 +15,6 @@ class UserListSerializer(serializers.ModelSerializer):
 
 class UserDetailSerializer(serializers.ModelSerializer):
     """Сериализатор для одного пользователя"""
-    payments_history = PaymentSerializer(many=True, read_only=True)
-
     class Meta:
         model = User
         fields = "__all__"

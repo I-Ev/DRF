@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'drf_yasg',
+    'corsheaders',
 
     'rest_framework',
     'rest_framework_simplejwt',
@@ -57,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -143,3 +146,18 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://localhost*',  # Замените на адрес вашего фронтенд-сервера ИЛИ для * для всех
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://read-and-write.example.com", #  Замените на адрес вашего фронтенд-сервера
+    # и добавьте адрес бэкенд-сервера
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+STRIPE_URL = 'https://api.stripe.com/v1/'
+STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')

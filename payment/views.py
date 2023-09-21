@@ -18,7 +18,7 @@ class PaymentListAPIView(generics.CreateAPIView):
     filterset_fields = ('paid_course', 'paid_lesson', 'payment_method')
 
 class PaymentCreateAPIView(generics.CreateAPIView):
-    """Создание платежа для оплаты урока"""
+    """Создание платежа для оплаты урока или курса"""
     serializer_class = PaymentSerializer
     def perform_create(self, serializer):
         new_payment = serializer.save()
